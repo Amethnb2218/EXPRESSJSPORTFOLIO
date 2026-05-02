@@ -40,6 +40,9 @@ ou :
 npm start
 ```
 
+Le serveur demarre sur `http://localhost:5000`.
+Le frontend React `reactportfolio` utilise le proxy Vite `/api` pour appeler ce backend.
+
 ## Routes
 
 | Methode | Route | Description |
