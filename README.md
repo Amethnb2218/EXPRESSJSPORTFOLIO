@@ -14,7 +14,7 @@ Creer un fichier `.env` a la racine du projet :
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://UTILISATEUR:MOT_DE_PASSE@CLUSTER.mongodb.net/expressjs_portfolio?retryWrites=true&w=majority&appName=EXPRESSJSPORTFOLIO
+MONGO_URI=mongodb+srv://UTILISATEUR:MOT_DE_PASSE@CLUSTER.mongodb.net/expressjs_portfolio?retryWrites=true&w=majority&authSource=admin&appName=EXPRESSJSPORTFOLIO
 USE_MEMORY_DB=false
 MONGODB_DNS_SERVERS=8.8.8.8,1.1.1.1
 ```
@@ -29,13 +29,14 @@ MONGODB_DNS_SERVERS=8.8.8.8,1.1.1.1
 6. Garder `USE_MEMORY_DB=false` pour utiliser Atlas.
 
 Si le mot de passe contient des caracteres speciaux, il doit etre encode dans l'URL.
+`authSource=admin` indique a MongoDB Atlas ou verifier l'utilisateur de connexion.
 `MONGODB_DNS_SERVERS` force Node.js a utiliser des DNS publics si la resolution `mongodb+srv` echoue avec `querySrv ECONNREFUSED`.
 
 Pour garder une demo locale sans Atlas, utiliser :
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://UTILISATEUR:MOT_DE_PASSE@CLUSTER.mongodb.net/expressjs_portfolio?retryWrites=true&w=majority&appName=EXPRESSJSPORTFOLIO
+MONGO_URI=mongodb+srv://UTILISATEUR:MOT_DE_PASSE@CLUSTER.mongodb.net/expressjs_portfolio?retryWrites=true&w=majority&authSource=admin&appName=EXPRESSJSPORTFOLIO
 USE_MEMORY_DB=true
 ```
 
