@@ -1,8 +1,24 @@
 const mongoose = require("mongoose");
+const dns = require("node:dns");
 
 let memoryServer;
 
 const shouldUseMemoryDb = () => process.env.USE_MEMORY_DB === "true";
+
+const configureDnsServers = () => {
+  const dnsServers = process.env.MONGODB_DNS_SERVERS;
+
+  if (!dnsServers) {
+    return;
+  }
+
+  dns.setServers(
+    dnsServers
+      .split(",")
+      .map((server) => server.trim())
+      .filter(Boolean)
+  );
+};
 
 const getMongoUri = async () => {
   if (shouldUseMemoryDb()) {
@@ -32,6 +48,8 @@ const connectdb = async () => {
   }
 
   try {
+    configureDnsServers();
+
     const connection = await mongoose.connect(mongoUri);
     console.log(`MongoDB connecte: ${connection.connection.host}`);
   } catch (error) {
