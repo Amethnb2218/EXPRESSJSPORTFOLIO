@@ -1,0 +1,56 @@
+# EXPRESSJS PORTFOLIO
+
+API REST de gestion de projets de portfolio avec Express JS et MongoDB.
+
+## Installation
+
+```bash
+npm install
+```
+
+## Configuration
+
+Creer un fichier `.env` a la racine du projet :
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/expressjs_portfolio
+```
+
+## Lancement
+
+```bash
+npm run dev
+```
+
+ou :
+
+```bash
+npm start
+```
+
+## Routes
+
+| Methode | Route | Description |
+| --- | --- | --- |
+| POST | `/api/projects` | Ajouter un projet |
+| GET | `/api/projects` | Retourner tous les projets |
+| GET | `/api/projects/:id` | Retourner les informations d'un projet |
+| PUT | `/api/projects/:id` | Modifier un projet |
+| DELETE | `/api/projects/:id` | Supprimer un projet |
+
+## Exemple de body JSON
+
+```json
+{
+  "libelle": "Jolofera - Plateforme SaaS Reservation & E-commerce",
+  "image": "https://example.com/image.jpg",
+  "categorie": "SaaS",
+  "periode": "2024 - Present",
+  "statut": "En production",
+  "role": "Fondateur & Developpeur Full Stack",
+  "lien": "https://jolofera.com",
+  "technologies": ["React", "Node.js", "Express.js", "MongoDB"],
+  "description": "Plateforme SaaS de reservation et e-commerce."
+}
+```
