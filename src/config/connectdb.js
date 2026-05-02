@@ -1,7 +1,30 @@
 const mongoose = require("mongoose");
 
+let memoryServer;
+
+const shouldUseMemoryDb = () => process.env.USE_MEMORY_DB === "true";
+
+const getMongoUri = async () => {
+  if (shouldUseMemoryDb()) {
+    const { MongoMemoryServer } = require("mongodb-memory-server");
+
+    memoryServer = await MongoMemoryServer.create();
+    console.log("MongoDB demo en memoire active");
+
+    return memoryServer.getUri();
+  }
+
+  return process.env.MONGO_URI;
+};
+
+const stopMemoryDb = async () => {
+  if (memoryServer) {
+    await memoryServer.stop();
+  }
+};
+
 const connectdb = async () => {
-  const mongoUri = process.env.MONGO_URI;
+  const mongoUri = await getMongoUri();
 
   if (!mongoUri) {
     console.error("MONGO_URI est manquant dans le fichier .env");
@@ -13,8 +36,21 @@ const connectdb = async () => {
     console.log(`MongoDB connecte: ${connection.connection.host}`);
   } catch (error) {
     console.error("Erreur de connexion a MongoDB:", error.message);
+    console.error(
+      "Demarrez MongoDB localement ou mettez USE_MEMORY_DB=true dans .env pour la demo."
+    );
     process.exit(1);
   }
 };
+
+process.once("SIGINT", async () => {
+  await stopMemoryDb();
+  process.exit(0);
+});
+
+process.once("SIGTERM", async () => {
+  await stopMemoryDb();
+  process.exit(0);
+});
 
 module.exports = connectdb;

@@ -15,7 +15,18 @@ Creer un fichier `.env` a la racine du projet :
 ```env
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/expressjs_portfolio
+USE_MEMORY_DB=false
 ```
+
+Si MongoDB n'est pas installe localement, utiliser le mode demo :
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/expressjs_portfolio
+USE_MEMORY_DB=true
+```
+
+Avec `USE_MEMORY_DB=true`, l'API lance une base MongoDB temporaire en memoire. Les donnees sont supprimees quand le serveur s'arrete.
 
 ## Lancement
 
