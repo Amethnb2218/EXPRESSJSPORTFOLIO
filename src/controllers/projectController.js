@@ -84,7 +84,7 @@ const updateProject = async (req, res) => {
 
   try {
     const project = await Project.findByIdAndUpdate(id, req.body, {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
     });
 
