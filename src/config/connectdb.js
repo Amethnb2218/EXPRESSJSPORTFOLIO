@@ -37,8 +37,9 @@ const connectdb = async () => {
   } catch (error) {
     console.error("Erreur de connexion a MongoDB:", error.message);
     console.error(
-      "Demarrez MongoDB localement ou mettez USE_MEMORY_DB=true dans .env pour la demo."
+      "Verifiez la chaine MongoDB Atlas, l'utilisateur, le mot de passe et l'adresse IP autorisee."
     );
+    console.error("Pour une demo locale, mettez USE_MEMORY_DB=true dans .env.");
     process.exit(1);
   }
 };

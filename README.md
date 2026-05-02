@@ -14,15 +14,26 @@ Creer un fichier `.env` a la racine du projet :
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/expressjs_portfolio
+MONGO_URI=mongodb+srv://UTILISATEUR:MOT_DE_PASSE@CLUSTER.mongodb.net/expressjs_portfolio?retryWrites=true&w=majority&appName=EXPRESSJSPORTFOLIO
 USE_MEMORY_DB=false
 ```
 
-Si MongoDB n'est pas installe localement, utiliser le mode demo :
+### Configuration MongoDB Atlas
+
+1. Creer un cluster sur MongoDB Atlas.
+2. Dans `Database Access`, creer un utilisateur avec un mot de passe.
+3. Dans `Network Access`, autoriser votre adresse IP.
+4. Dans `Connect`, choisir le driver Node.js et copier la chaine `mongodb+srv://...`.
+5. Coller cette chaine dans `MONGO_URI` du fichier `.env`.
+6. Garder `USE_MEMORY_DB=false` pour utiliser Atlas.
+
+Si le mot de passe contient des caracteres speciaux, il doit etre encode dans l'URL.
+
+Pour garder une demo locale sans Atlas, utiliser :
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/expressjs_portfolio
+MONGO_URI=mongodb+srv://UTILISATEUR:MOT_DE_PASSE@CLUSTER.mongodb.net/expressjs_portfolio?retryWrites=true&w=majority&appName=EXPRESSJSPORTFOLIO
 USE_MEMORY_DB=true
 ```
 
